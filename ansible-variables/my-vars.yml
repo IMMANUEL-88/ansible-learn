@@ -1,0 +1,3 @@
+---
+vars_from_my_vars_yml: "This variable is from my-vars.yml"
+other_variable: "dummy variable"

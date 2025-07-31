@@ -1,0 +1,99 @@
+---
+- name: Example Ansible Playbook for handlers
+  hosts: all
+  become: yes
+  remote_user: jeyam
+  roles:
+    - custom-role
+
+  vars:
+    # String variable
+    main_playbook_variable: "Hello! This is first ansible variable"
+
+    # Boolean Variable
+    is_enabled: false
+
+    # List Variable
+    fruits:
+      - apple
+      - banana
+      - orange
+
+    # Dictionary variable
+    fruit_prices:
+      apple: 220
+      banana: 15
+      orange: 150
+
+    # Nested Variables
+    fruit_basket:
+      - name: John
+        fruits:
+          - apple
+          - orange
+      - name: Jane
+        fruits:
+          - banana
+          - apple
+
+    # Variables from a file
+  vars_files:
+    - my-vars.yml
+
+
+
+  tasks:
+    - name: String variable from main_playbook_variable
+      debug:
+        var: main_playbook_variable
+
+    - name: Boolean variable
+      debug:
+        msg: "Variable is true"
+      when: is_enabled
+
+    - name: List variable - Print Fruits List
+      debug:
+        var: fruits
+
+    - name: List variable - Print Individual Element of List Based on Index
+      debug:
+        var: fruits[1]
+
+    - name: Dictionary Variable - List all prices
+      debug:
+        var: fruit_prices
+
+    - name: Dictionary variable - Accessing individual elements
+      debug:
+        var: fruit_prices.apple
+
+    - name: Get Price of Apple
+      command: echo "{{ fruit_prices['apple'] }}"
+      # Register the value to another variable
+      register: apple_price_registered_var
+
+    - name: Print value of registered variable
+      debug:
+        var: apple_price_registered_var.stdout
+
+    - name: Get the price of apple from nested variable
+      debug:
+        var: fruit_prices[fruit_basket[0].fruits[0]]
+
+    - name: Using Jinja2 on variables
+      debug:
+        var: fruit_prices.keys() | list | map('upper') | list
+
+    - name: Printing variable from a variable file
+      debug:
+        var: vars_from_my_vars_yml 
+
+    - name: Defining and Accessing variable at run time
+      debug:
+        var: version
+
+    # Getting variable from YAML file at run time
+    - name: Accessing variable at run time from passing YAML file as argument
+      debug:
+        var: other_variable
