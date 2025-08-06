@@ -1,0 +1,7 @@
+---
+- name: Example Ansible playbook for Conditionals
+  hosts: all
+  become: yes
+  remote_user: jeyam
+  roles:
+    - custom-role
