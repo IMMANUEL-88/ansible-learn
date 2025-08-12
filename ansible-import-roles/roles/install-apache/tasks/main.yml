@@ -1,0 +1,20 @@
+---
+- name: Install Apache Server
+  become: yes
+  apt:
+    name: apache2
+    state: latest
+    update_cache: yes
+
+- name: Change Apache Listen port on 8080
+  become: yes
+  lineinfile:
+    path: /etc/apache2/ports.conf
+    regexp: '^Listen'
+    line: 'Listen 8080'
+
+- name: Start Apache Service
+  become: yes
+  service:
+    name: apache2
+    state: started

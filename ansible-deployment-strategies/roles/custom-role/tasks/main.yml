@@ -1,0 +1,7 @@
+---
+- name: Installing Cowsay
+  become: yes
+  apt:
+    name:
+      - cowsay
+    update_cache: yes

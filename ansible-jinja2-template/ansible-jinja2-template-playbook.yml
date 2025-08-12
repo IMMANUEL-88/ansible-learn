@@ -1,0 +1,7 @@
+---
+- name: Example Jinja2 Playbook template
+  hosts: all
+  become: yes
+  remote_user: jeyam
+  roles:
+    - install-lighttpd

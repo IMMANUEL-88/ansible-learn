@@ -1,0 +1,2 @@
+[Local]
+localhost ansible_ssh_private_key_file=/home/immanuel/.ssh/ansible

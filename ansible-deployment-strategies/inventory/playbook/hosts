@@ -1,0 +1,5 @@
+[blue]
+10.32.124.34 ansible_user=ubuntu ansible_ssh_private_key_file=/home/immanuel/.ssh/ansible
+
+[green]
+10.32.124.6 ansible_user=ubuntu ansible_ssh_private_key_file=/home/immanuel/.ssh/ansible

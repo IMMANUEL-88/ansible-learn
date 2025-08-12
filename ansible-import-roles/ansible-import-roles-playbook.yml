@@ -1,0 +1,8 @@
+---
+- name: Example Ansible Playbook for Import Roles
+  hosts: all
+  become: yes
+  remote_user: jeyam
+  roles:
+    - custom-role
+    - install-apache
